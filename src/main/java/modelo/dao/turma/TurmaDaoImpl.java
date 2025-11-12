@@ -383,6 +383,7 @@ public class TurmaDaoImpl implements TurmaDAO {
 
             while (resultado.next()) {
 
+
                 Long id = resultado.getLong("id_turma");
                 String nome = resultado.getString("nome_turma");
                 Sala sala = new Sala(resultado.getLong("sala_turma"));
@@ -394,7 +395,7 @@ public class TurmaDaoImpl implements TurmaDAO {
                 String aula = resultado.getString("aula_turma");
 
 
-                turmas.add(new Turma(id,nome,sala,horario,localidade,quantidadeDeVagas,professor,situacaoTurma,aula));
+                turmas.add(new Turma(id,nome,sala,horario,professor,localidade,quantidadeDeVagas,situacaoTurma,aula));
             }
 
         } catch (SQLException erro) {

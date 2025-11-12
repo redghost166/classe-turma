@@ -113,30 +113,31 @@ public class TurmaServlet extends HttpServlet {
 
         Long id = Long.parseLong(request.getParameter("id"));
         String nome = request.getParameter("nome");
-        Long sala = Long.parseLong(request.getParameter("sala"));
-        double horario = Double.parseDouble(request.getParameter("horario"));
+        Sala sala = new Sala(Long.parseLong(request.getParameter("salaId")));
+        Double horario = Double.parseDouble(request.getParameter("horario"));
+        Professor professor = new Professor(Long.parseLong(request.getParameter("idProfessor")));
         String localidade = request.getParameter("localidade");
         int quantidadeDeVagas = Integer.parseInt(request.getParameter("quantidadeDeVagas"));
-        long professorId = Long.parseLong(request.getParameter("professorId"));
-        boolean situacaoTurma =  Boolean.parseBoolean(request.getParameter("situacaoTurma"));
+        Boolean situacaoTurma = Boolean.parseBoolean(request.getParameter("situacaoTurma"));
         String aula = request.getParameter("aula");
 
 
-        dao.inserirTurma(new Turma(id, nome,new Sala(sala), horario, localidade, quantidadeDeVagas,new Professor(professorId), situacaoTurma, aula));
+        dao.inserirTurma(new Turma(id,nome,sala,horario,professor,localidade,quantidadeDeVagas,situacaoTurma,aula));
         response.sendRedirect("listar");
     }
 
     private void atualizarTurma(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 
-        String id = request.getParameter("id");
+        Long id = Long.parseLong(request.getParameter("id"));
         String nome = request.getParameter("nome");
-        String sala = request.getParameter("sala");
-        String horario = request.getParameter("horario");
+        Sala sala = new Sala(Long.parseLong(request.getParameter("salaId")));
+        Double horario = Double.parseDouble(request.getParameter("horario"));
         Professor professor = new Professor(Long.parseLong(request.getParameter("idProfessor")));
         String localidade = request.getParameter("localidade");
-        String quantidadeDeVagas = request.getParameter("quantidadeDeVagas");
-        Boolean situacaoTurma =  Boolean.parseBoolean(request.getParameter("situacaoTurma"));
+        int quantidadeDeVagas = Integer.parseInt(request.getParameter("quantidadeDeVagas"));
+        Boolean situacaoTurma = Boolean.parseBoolean(request.getParameter("situacaoTurma"));
         String aula = request.getParameter("aula");
+
         Turma turma = dao.atualizarAulaTurma(new Turma(id,nome,sala,horario,professor,localidade,quantidadeDeVagas,situacaoTurma,aula));
     }
 

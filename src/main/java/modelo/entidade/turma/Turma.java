@@ -19,56 +19,12 @@ public class Turma {
     private Professor professor;
     private ArrayList<Aluno> alunos;
 
-
-    public Turma(Long id, int quantidadeDeVagas, Sala sala, String nome, double horario, String localidade, String aula, boolean situacaoTurma, Professor professor, ArrayList<Aluno> alunos) {
-        this.id = id;
-        this.quantidadeDeVagas = quantidadeDeVagas;
-        this.sala = sala;
-        this.nome = nome;
-        this.horario = horario;
-        this.localidade = localidade;
-        this.aula = aula;
-        this.situacaoTurma = situacaoTurma;
-        this.professor = professor;
-        this.alunos = alunos;
-    }
-
-    public Turma(Long id, String nome, Sala sala, double horario, String localidade, int quantidadeDeVagas, Professor professor, boolean situacaoTurma, String aula) {
-        this.id = id;
-        this.nome = nome;
-        this.sala = sala;
-        this.horario = horario;
-        this.localidade = localidade;
-        this.quantidadeDeVagas = quantidadeDeVagas;
-        this.professor = professor;
-        this.situacaoTurma = situacaoTurma;
-        this.aula = aula;
-    }
-
-    public Turma(Long id, String nome, Double horario, String localidade, int quantidadeDeVagas, boolean situacaoTurma, String aula) {
-        this.id = id;
-        this.nome = nome;
-        this.horario = horario;
-        this.localidade = localidade;
-        this.quantidadeDeVagas = quantidadeDeVagas;
-        this.situacaoTurma = situacaoTurma;
-        this.aula = aula;
+    public Turma(Long id, String nome, Sala sala, Double horario, Professor professor, String localidade, int quantidadeDeVagas, Boolean situacaoTurma, String aula) {
     }
 
     public Turma(long id) {
-        this.id = id;
     }
 
-    public Turma(String id, String nome, String sala, String horario, Professor professor, String localidade, String quantidadeDeVagas, Boolean situacaoTurma, String aula) {
-        this.id = Long.parseLong(id);
-        this.nome = nome;
-        this.sala = new Sala(sala);
-        this.horario = Double.parseDouble(horario);
-        this.localidade = localidade;
-        this.quantidadeDeVagas = Integer.parseInt(quantidadeDeVagas);
-        this.situacaoTurma = situacaoTurma;
-        this.aula = aula;
-    }
 
     public int getQuantidadeDeVagas() {
         return quantidadeDeVagas;
