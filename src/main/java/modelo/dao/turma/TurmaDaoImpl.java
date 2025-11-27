@@ -2,6 +2,7 @@ package modelo.dao.turma;
 
 
 import modelo.entidade.aluno.Aluno;
+import modelo.entidade.disciplina.Disciplina;
 import modelo.entidade.professor.Professor;
 import modelo.entidade.sala.Sala;
 import modelo.entidade.turma.Turma;
@@ -20,17 +21,18 @@ public class TurmaDaoImpl implements TurmaDAO {
         try {
 
             conexao = conectarBanco();
-            insert = conexao.prepareStatement("INSERT INTO turma (nome_turma, aula_turma, localidade_turma, sala_turma, quantidadeDeVagas_turma, professor_turma, situacaoTurma_turma, horario_turma) VALUES (?,?,?,?,?,?,?,?,?)");
+            insert = conexao.prepareStatement("INSERT INTO turma (Id_Turma, QantidadeDeVagas_Turma, Id_Sala_Turma, Nome_Turma, Horario_Turma, Localidade_Turma, Aula_Turma, Situacao_Turma, Id_Professor_Turma, Id_Disciplina_Turma) VALUES (?,?,?,?,?,?,?,?,?,?)");
 
-            insert.setString(1, turma.getNome());
-            insert.setString(2, turma.getAula());
-            insert.setString(3, turma.getLocalidade());
-            insert.setLong(4, turma.getSala().getId());
-            insert.setInt(5, turma.getQuantidadeDeVagas());
-            insert.setLong(7, turma.getProfessor().getId());
-            insert.setBoolean(8, turma.getSituacaoTurma());
-            insert.setDouble(9, turma.getHorario());
-
+            insert.setLong(1, turma.getId());
+            insert.setInt(2,turma.getQuantidadeDeVagas());
+            insert.setLong(3,turma.getSala().getId());
+            insert.setString(4,turma.getNome());
+            insert.setDouble(5,turma.getHorario());
+            insert.setString(6,turma.getLocalidade());
+            insert.setString(7,turma.getAula());
+            insert.setBoolean(8,turma.getSituacaoTurma());
+            insert.setLong(9,turma.getIdProfessor());
+            insert.setLong(10,turma.getDisciplina().getId());
 
             insert.execute();
 
@@ -393,9 +395,10 @@ public class TurmaDaoImpl implements TurmaDAO {
                 Professor professor = new Professor(resultado.getLong("professor_turma"));
                 boolean situacaoTurma = resultado.getBoolean("situacaoTurma_turma");
                 String aula = resultado.getString("aula_turma");
+                Disciplina disciplina = new Disciplina(resultado.getLong("disciplina_turma"));
 
 
-                turmas.add(new Turma(id,nome,sala,horario,professor,localidade,quantidadeDeVagas,situacaoTurma,aula));
+                turmas.add(new Turma(id,nome,sala,horario,localidade,quantidadeDeVagas,professor,situacaoTurma,aula,disciplina));
             }
 
         } catch (SQLException erro) {
@@ -434,6 +437,9 @@ public class TurmaDaoImpl implements TurmaDAO {
 
 
     private Connection conectarBanco() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost/conectateste?user=admin&password=password");
+        return DriverManager.getConnection(
+                "jdbc:mysql://localhost/conectateste?user=root&password=root&useTimezone=true&serverTimezone=America/Sao_Paulo"
+        );
     }
+
 }

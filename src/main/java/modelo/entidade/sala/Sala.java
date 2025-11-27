@@ -18,7 +18,7 @@ public class Sala {
         this.id = salaTurma;
     }
 
-    public Long getId() {
+    public Long getId()      {
         return id;
     }
 

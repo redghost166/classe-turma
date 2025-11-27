@@ -25,6 +25,7 @@
                     <c:if test="${turma != null}">
                         <input type="hidden" name="id" value="<c:out value='${turma.id}' />"/>
                     </c:if>
+
                         <label>ID:</label>
                         <c:if test="${turma == null}">
                             <input type="text" name="id" placeholder="Informe o ID da turma...">
@@ -53,6 +54,10 @@
                             <option value="true" <c:if test="${turma.situacaoTurma}">selected</c:if>>Ativa</option>
                             <option value="false" <c:if test="${!turma.situacaoTurma}">selected</c:if>>Inativa</option>
                         </select>
+                        <p></p>
+                        <label>ID da Disciplina:</label>
+                        <input type="text" name="idDisciplina" value="<c:out value='${turma.Disciplina.id}'/>" placeholder="Informe o ID da Disciplina...">
+
 
                         <label>Aula:</label>
                         <input type="text" name="aula" value="<c:out value='${turma.aula}'/>" placeholder="Informe o nome da aula...">
@@ -61,6 +66,7 @@
                     <button type="submit">Salvar</button>
                     <button type="reset">Limpar Formulário</button>
                 </form>
+                    <a href="./telas/turmas.jsp">aaaaaaa</a>
         </div>
     </div>
 </div>

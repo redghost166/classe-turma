@@ -2,6 +2,7 @@ package Servlet;
 
 import modelo.dao.turma.TurmaDAO;
 import modelo.dao.turma.TurmaDaoImpl;
+import modelo.entidade.disciplina.Disciplina;
 import modelo.entidade.professor.Professor;
 import modelo.entidade.sala.Sala;
 import modelo.entidade.turma.Turma;
@@ -40,6 +41,10 @@ public class TurmaServlet extends HttpServlet {
         try {
 
             switch (action) {
+
+                case "/recuperarTurma":
+                    listarTurmas(request, response);
+                    break;
 
                 case "/novo":
                     mostrarFormularioNovoTurma(request, response);
@@ -120,9 +125,10 @@ public class TurmaServlet extends HttpServlet {
         int quantidadeDeVagas = Integer.parseInt(request.getParameter("quantidadeDeVagas"));
         Boolean situacaoTurma = Boolean.parseBoolean(request.getParameter("situacaoTurma"));
         String aula = request.getParameter("aula");
+        Disciplina disciplina = new Disciplina(Long.parseLong(request.getParameter("idDisciplina")));
 
 
-        dao.inserirTurma(new Turma(id,nome,sala,horario,professor,localidade,quantidadeDeVagas,situacaoTurma,aula));
+        dao.inserirTurma(new Turma(id,nome,sala,horario,localidade,quantidadeDeVagas,professor,situacaoTurma,aula,disciplina));
         response.sendRedirect("listar");
     }
 
@@ -137,8 +143,9 @@ public class TurmaServlet extends HttpServlet {
         int quantidadeDeVagas = Integer.parseInt(request.getParameter("quantidadeDeVagas"));
         Boolean situacaoTurma = Boolean.parseBoolean(request.getParameter("situacaoTurma"));
         String aula = request.getParameter("aula");
+        Disciplina disciplina = new Disciplina(Long.parseLong(request.getParameter("idDisciplina")));
 
-        Turma turma = dao.atualizarAulaTurma(new Turma(id,nome,sala,horario,professor,localidade,quantidadeDeVagas,situacaoTurma,aula));
+        Turma turma = dao.atualizarAulaTurma(new Turma(id,nome,sala,horario,localidade,quantidadeDeVagas,professor,situacaoTurma,aula,disciplina));
     }
 
     private void deletarTurma(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {

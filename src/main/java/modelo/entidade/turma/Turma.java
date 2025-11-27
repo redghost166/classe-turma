@@ -1,6 +1,7 @@
 package modelo.entidade.turma;
 
 import modelo.entidade.aluno.Aluno;
+import modelo.entidade.disciplina.Disciplina;
 import modelo.entidade.professor.Professor;
 import modelo.entidade.sala.Sala;
 
@@ -18,11 +19,37 @@ public class Turma {
     private boolean situacaoTurma;
     private Professor professor;
     private ArrayList<Aluno> alunos;
+    private Disciplina disciplina;
 
-    public Turma(Long id, String nome, Sala sala, Double horario, Professor professor, String localidade, int quantidadeDeVagas, Boolean situacaoTurma, String aula) {
+    public Turma(Long id, int quantidadeDeVagas, Sala sala, String nome, double horario, String localidade, String aula, boolean situacaoTurma, Professor professor, ArrayList<Aluno> alunos, Disciplina disciplina) {
+        setId(id);
+        setQuantidadeDeVagas(quantidadeDeVagas);
+        setSala(sala);
+        setNome(nome);
+        setHorario(horario);
+        setLocalidade(localidade);
+        setAula(aula);
+        setSituacaoTurma(situacaoTurma);
+        setProfessor(professor);
+        setAlunos(alunos);
+        setDisciplina(disciplina);
     }
 
     public Turma(long id) {
+        this.id = id;
+    }
+
+    public Turma(Long id, String nome, Sala sala, double horario, String localidade, int quantidadeDeVagas, Professor professor, boolean situacaoTurma, String aula, Disciplina disciplina) {
+    setId(id);
+    setNome(nome);
+    setSala(sala);
+    setHorario(horario);
+    setLocalidade(localidade);
+    setQuantidadeDeVagas(quantidadeDeVagas);
+    setProfessor(professor);
+    setSituacaoTurma(situacaoTurma);
+    setAula(aula);
+    setDisciplina(disciplina);
     }
 
 
@@ -116,5 +143,13 @@ public class Turma {
 
     public boolean getSituacaoTurma() {
         return situacaoTurma;
+    }
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
     }
 }
